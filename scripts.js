@@ -1,6 +1,6 @@
 function hashText()
 {    
-  //set output text value to sha1 hash of input textbox
+	//set output text value to sha1 hash of input textbox
     $("#output").val(SHA1($("#input").val()));
 }
 
