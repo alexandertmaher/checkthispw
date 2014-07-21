@@ -1,17 +1,173 @@
+
+<!DOCTYPE html>
+
 <html>
 
-<head>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="scripts.js"	></script>
-</head>
+	<title>check this pw</title>
 
-<body>
-<input type = "password" id = "input" size="50" onkeyup = 'hashText()'/>
-<input type = "text" id = "output" size="50" />
-<input type = "button" value = 'check it' onclick = 'checkPass()' id = 'submit' />
-<div id = "results">
-Check to see if your password is in the database.
-</div>
-</body>
+	<head>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="scripts.js"	></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/excite-bike/jquery-ui.css">
+		<link rel="stylesheet" href="style.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700italic' rel='stylesheet' type='text/css'>
+
+		<script>
+			$(function() {
+				$("#accordion").accordion({
+					heightStyle : "content",
+					collapsible : true
+				});
+			});
+		</script>
+
+		<script>
+			$(document).keypress(function(e) {
+				if (e.which == 13) {
+					checkPass();
+				}
+			});
+		</script>
+		
+	</head>
+
+	<body>
+		<div class="container">
+			<div id="content">
+				<h1>Do Hackers Know Your Password?</h1>
+				<div id="form">
+					<form>
+						Password:
+						<input class="textbox" type="password" id = "input" size="50" onkeyup = 'hashText()'/>
+						<br>
+						<br>
+						Hash Value:
+						<input class="textbox" type="text" id = "output" size="50" onkeyup = 'clearResults()' onkeydown = 'clearInput()'/>
+						<br>
+						<br>
+						<div id=button>
+							<input type="button" value = 'check it' onclick = 'checkPass()' id = 'submit' />
+						</div>
+					</form>
+				</div>
+				<div id = "results">
+
+				</div>
+
+				<div id="accordion">
+					<h3>About</h3>
+					<div>
+						<p>
+							This tool safely checks to see if your password is in a huge database of passwords used by hackers.
+							If it is, your password is definitely NOT safe and you should change it immediately!
+						</p>
+
+						<p>
+							This website is safe to use because we never even know your password!  Read 'How it Works' to learn more.
+						</p>
+					</div>
+
+					<h3>How it Works</h3>
+					<div>
+						<p>
+							When you enter your password, your browser hashes it using javascript.
+						</p>
+						<p>
+							Hashing is a one-way mathematical function that always results in the same output.
+							That output can't be reverse engineered to determine the input (that's why it's called one-way). Learn more about hashes <a href="http://en.wikipedia.org/wiki/Hash_function_%28cryptography%29" target ="_blank">here.</a>
+						</p>
+
+						<p>
+							After your browser hashes your password and you click the green 'check it' button, your browser sends the hash (not the password) to us.
+							We look up the hash in our database that contains the hashes of over 1.5 billion passwords. If it's there, you know that your password is NOT secure.
+						</p>
+
+						<p>
+							Using the hashed value allows us to tell you wether or not your password is in the database, without even knowing your password!
+						</p>
+						<p>
+							If you're really paranoid, look at our source code, or use our API!
+						</p>
+
+					</div>
+
+					<h3>API</h3>
+					<div>
+						<p>
+							If you want to check passwords programmatically, use the following URL:
+						</p>
+						<p style ="text-align: center">
+							http://checkthis.pw/pwcheck.php/?hash={sha1hash}
+						</p>
+						<p style="font-size:.75em">
+							*Where {sha1hash} is the SHA1 hash of the password you want to check.
+						</p>
+						<p>
+							We will respond with a 1 if the hash is in our database, and a 0 if it is not.  We encourage you to use this free service if:
+							<ul>
+								<li>
+									you're signing up new users for your website
+								</li>
+								<li>
+									you want to check a bunch of passwords
+								</li>
+								<li>
+									you don't trust us and are too lazy to read the source code ;-)
+								</li>
+							</ul>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="footer" class ="container">
+			<div id="social-media">
+				<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://checkthis.pw/">Tweet</a>
+				<script type="text/javascript">
+					// <![CDATA[
+					(function() {
+						var twitterScriptTag = document.createElement('script');
+						twitterScriptTag.type = 'text/javascript';
+						twitterScriptTag.async = true;
+						twitterScriptTag.src = 'http://platform.twitter.com/widgets.js';
+						var s = document.getElementsByTagName('script')[0];
+						s.parentNode.insertBefore(twitterScriptTag, s);
+					})();
+					// ]]>
+				</script>
+				<div class="g-plusone" href="http://checkthis.pw/" data-size="wide" ... ></div>
+				<script type="text/javascript">
+					(function() {
+						var po = document.createElement('script');
+						po.type = 'text/javascript';
+						po.async = true;
+						po.src = 'https://apis.google.com/js/plusone.js';
+						var s = document.getElementsByTagName('script')[0];
+						s.parentNode.insertBefore(po, s);
+					})();
+				</script>
+				<div class="fb-like" data-href="http://checkthis.pw/" data-send="false" data-width="260" data-show-faces="false"></div>
+				<script>
+					( function(d, s, id) {
+							var js, fjs = d.getElementsByTagName(s)[0];
+							if (d.getElementById(id))
+								return;
+							js = d.createElement(s);
+							js.id = id;
+							js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+							fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));
+				</script>
+	<form id ="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="ZKLP49HM8WUSU">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_SM.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+				</form>
+
+			</div>
+		</div>
+	</body>
 
 </html>
