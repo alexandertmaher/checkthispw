@@ -1,4 +1,6 @@
 function hashText() {
+	//if user isn't hitting enter, update clear results and hash text box
+	if (event.which != 13)
 	//clear results
 	clearResults();
 	//set output text value to sha1 hash of input textbox
@@ -15,11 +17,11 @@ function checkPass() {
 		$("#results").html("Use a valid SHA 1 hash.");
 	}
 	
-	//if user hasn't entered their own hash and the input is less than 8, results: Need longer password
-	//else if (SHA1(input) == hash && input.length <= 8)
-	//{
-	//	$("#results").html("All passwords 8 characters or less are trivial to crack. Make your password longer.");
-	//}
+	//if hash is valid and the input is less than 8, results: Need longer password
+	else if (SHA1(input) == hash && input.length <= 8)
+	{
+		$("#results").html("All passwords 8 characters or less are trivial to crack. Make your password longer.");
+	}
 	// look up the hash
 	else {
 		$("#results").html("Checking...");
@@ -31,13 +33,13 @@ function checkPass() {
 }
 
 function displayResult(data) {
-	//add an if to return a sentence instead of 0 or 1
+	//display results in sentence form instead of binary
 	if (data >= 1) {
-		var results = "Your password is in the database. Change it immediately!"
+		var results = "Your password is in the database. Change it immediately!";
 	} else if (data == 0) {
-		var results = "Your password is not in the database."
+		var results = "Your password is not in the database.";
 	} else {
-		var results = "There was an error. Please try again later."
+		var results = "There was an error. Please try again later.";
 	}
 	$("#results").html(results);
 }
