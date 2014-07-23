@@ -38,11 +38,11 @@
 				<div id="form">
 					<form>
 						Password:
-						<input class="textbox" type="password" id = "input" size="50" onkeyup = 'hashText()'/>
+						<input class="textbox" type="password" id = "input" size="50" onkeypress = 'hashText(event)'/>
 						<br>
 						<br>
 						Hash Value:
-						<input class="textbox" type="text" id = "output" size="50" onkeyup = 'clearResults()' onkeydown = 'clearInput()'/>
+						<input class="textbox" type="text" id = "output" size="50" onkeypress = 'clearResults()' ; 'clearInput()'/>
 						<br>
 						<br>
 						<div id=button>
